@@ -9,7 +9,7 @@ import (
 
 // Let's model the users table
 type Quote struct {
-	Quote_ID     int64
+	Quotation_ID int64
 	Quote        string
 	Quote_Author string
 	CreatedAt    time.Time
@@ -27,14 +27,14 @@ func (m *QuoteModel) Get() (*Quote, error) {
 	var q Quote
 
 	statement := `
-	            SELECT quote_id, quote, quote_author
+	            SELECT quotation_id, quote, quote_author
 				FROM quotes
 				ORDER BY RANDOM()
 				LIMIT 1
 	             `
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
-	err := m.DB.QueryRowContext(ctx, statement).Scan(&q.Quote_ID, &q.Quote, &q.Quote_Author)
+	err := m.DB.QueryRowContext(ctx, statement).Scan(&q.Quotation_ID, &q.Quote, &q.Quote_Author)
 	if err != nil {
 		return nil, err
 	}
@@ -48,7 +48,7 @@ func (m *QuoteModel) Insert(quote string, quote_author string) (int64, error) {
 	statement := `
 	            INSERT INTO quotes(quote, quote_author)
 				VALUES($1, $2)
-				RETURNING quote_id				
+				RETURNING quotation_id				
 	             `
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()

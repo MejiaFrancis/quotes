@@ -16,7 +16,7 @@ func (app *application) routes() *httprouter.Router {
 
 	router.HandlerFunc(http.MethodGet, "/quote/create", app.quoteCreateShow) //passing in pointer, say where to find handler func
 	// callback - above shows passing of the address not the func itself
-	router.HandlerFunc(http.MethodPost, "quote/create", app.quoteCreateSubmit)
+	router.HandlerFunc(http.MethodPost, "/quote/create", app.quoteCreateSubmit)
 	//router.HandlerFunc(http.MethodGet, "/", app.Home)
 	return router
 }

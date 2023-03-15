@@ -31,10 +31,10 @@ func (app *application) quoteCreateSubmit(w http.ResponseWriter, r *http.Request
 	}
 	// insert the quote and author into the database
 	quote := r.PostForm.Get("quote")
-	author := r.PostForm.Get("author_name")
-	log.Printf("%s %s\n", quote, author)
-	id, err := app.quote.Insert(quote, author)
-	log.Printf("%s %s %d\n", quote, author, id)
+	quote_author := r.PostForm.Get("author_name")
+	log.Printf("%s %s\n", quote, quote_author)
+	quotation_id, err := app.quote.Insert(quote, quote_author)
+	log.Printf("%s %s %d\n", quote, quote_author, quotation_id)
 
 	if err != nil {
 		http.Error(w, http.StatusText(http.StatusInternalServerError),
