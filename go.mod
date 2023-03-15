@@ -1,4 +1,4 @@
-module github.com/MejiaFrancis/quotes.git
+module github.com/MejiaFrancis/quotes
 
 go 1.19
 
